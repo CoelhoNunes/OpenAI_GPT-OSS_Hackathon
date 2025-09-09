@@ -2,8 +2,7 @@ services:
   vllm:
     image: vllm/vllm-openai:latest
     environment:
-      - HF_TOKEN=${HF_TOKEN:-}
-      - HUGGING_FACE_HUB_TOKEN=${HF_TOKEN:-}
+      - HF_HOME=/models
     command: ["--model", "openai/gpt-oss-20b", "--host", "0.0.0.0", "--port", "8000", "--download-dir", "/models", "--max-model-len", "8192", "--trust-remote-code"]
     volumes:
       - vllm_models:/models
@@ -50,9 +49,15 @@ services:
       dockerfile: Dockerfile
     environment:
       DATABASE_URL: postgresql://leetcoach:leetcoach123@db:5432/leetcoach
-      GPT_OSS_MODEL: ${GPT_OSS_MODEL:-openai/gpt-oss-20b}
+      MODEL_ID: ${MODEL_ID:-openai/gpt-oss-20b}
+      HF_ID: ${HF_ID:-openai/gpt-oss-20b}
+      WEIGHTS_PATH: ${WEIGHTS_PATH:-}
+      TORCH_DTYPE: ${TORCH_DTYPE:-bfloat16}
+      MAX_TOKENS: ${MAX_TOKENS:-512}
+      CONTEXT_LEN: ${CONTEXT_LEN:-8192}
+      GPU_MEMORY_FRACTION: ${GPU_MEMORY_FRACTION:-0.9}
+      BATCH_SIZE: ${BATCH_SIZE:-1}
       VLLM_BASE_URL: http://vllm:8000
-      HF_TOKEN: ${HF_TOKEN:-}
       ALLOW_NON_GPT_OSS: false
       CUDA_ACCEL_URL: http://cuda_accel:8001
     ports:
@@ -95,7 +100,7 @@ services:
     environment:
       CUDA_VISIBLE_DEVICES: ${CUDA_VISIBLE_DEVICES:-0}
     ports:
-      - "8001:8001"
+      - "8001:8003"
     volumes:
       - ./cuda_accel:/app
     deploy:

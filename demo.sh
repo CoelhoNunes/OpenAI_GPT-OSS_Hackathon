@@ -1,9 +1,10 @@
 #!/bin/bash
+set -euo pipefail
 
 # LeetCoach Demo Script
 # This script demonstrates the key features of LeetCoach
 
-set -e
+set +e
 
 echo "🚀 LeetCoach Demo Script"
 echo "========================"
@@ -82,7 +83,8 @@ start_services() {
     
     if ! docker compose ps | grep -q "Up"; then
         print_status "Services not running, starting them..."
-        make up
+        cp -n env.example .env 2>/dev/null || true
+        docker compose up --build -d
         print_status "Waiting for services to be ready..."
         sleep 30
     else

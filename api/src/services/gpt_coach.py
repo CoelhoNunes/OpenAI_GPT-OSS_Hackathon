@@ -29,7 +29,7 @@ class GPTCoachService:
         context = self._build_context(problem_context, user_message, code_snippet, test_results)
         
         try:
-            # Try to get response from vLLM
+            # Try to get response from local vLLM (gpt-oss only)
             response = await self._call_vllm(context)
             if response:
                 # Apply guardrails to ensure we don't give full solutions

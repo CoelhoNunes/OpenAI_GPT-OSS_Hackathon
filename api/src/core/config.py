@@ -11,34 +11,38 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     """Application settings."""
-    
+
     # Database
     DATABASE_URL: str = "postgresql://leetcoach:leetcoach123@localhost:5432/leetcoach"
-    
-    # Model Configuration (hard-pinned to vLLM + GPT-OSS only)
-    GPT_OSS_MODEL: str = "openai/gpt-oss-20b"
+
+    # Model Configuration (GPT-OSS local only)
+    MODEL_ID: str = "openai/gpt-oss-20b"
+    HF_ID: str = "openai/gpt-oss-20b"
+    WEIGHTS_PATH: str = ""
+    TORCH_DTYPE: str = "bfloat16"
+    MAX_TOKENS: int = 512
+    CONTEXT_LEN: int = 8192
+    GPU_MEMORY_FRACTION: float = 0.9
+    BATCH_SIZE: int = 1
     ALLOW_NON_GPT_OSS: bool = False
-    
-    # vLLM Configuration
+
+    # vLLM Configuration (local-only, no external endpoints)
     VLLM_BASE_URL: str = "http://vllm:8000"
-    
-    # Hugging Face Configuration (optional)
-    HF_TOKEN: str = ""
-    
+
     # CUDA Acceleration
     CUDA_ACCEL_URL: str = "http://cuda_accel:8001"
-    
+
     # Security
     SECRET_KEY: str = "your-secret-key-change-in-production"
     ALLOWED_ORIGINS: List[str] = ["http://localhost:3000", "http://127.0.0.1:3000"]
     ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
-    
+
     # Runner Configuration
     RUNNER_URL: str = "http://runner:8002"
-    
+
     # Rate Limiting
     RATE_LIMIT_PER_MINUTE: int = 60
-    
+
     # Coach Configuration
     MAX_COACH_RESPONSE_LENGTH: int = 200  # Max tokens for generation
     MAX_CODE_SNIPPET_LINES: int = 6
@@ -51,15 +55,12 @@ class Settings(BaseSettings):
         if isinstance(v, str):
             v = v.lower() in ('true', '1', 'yes', 'on')
         
-        # Only allow GPT-OSS with vLLM path (ALLOW_NON_GPT_OSS should be False)
+        # Only allow GPT-OSS (ALLOW_NON_GPT_OSS must remain False)
         if v:
             raise ValueError("Only GPT-OSS models are allowed")
         return v
     
-    model_config = {
-        "env_file": ".env",
-        "case_sensitive": True
-    }
+    model_config = {"env_file": ".env", "case_sensitive": True}
 
 
 # Global settings instance

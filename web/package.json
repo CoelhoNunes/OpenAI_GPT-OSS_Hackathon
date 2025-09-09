@@ -2,6 +2,10 @@
   "name": "leetcoach-web",
   "version": "1.0.0",
   "description": "LeetCoach - LeetCode-style practice app with GPT-OSS coaching",
+<<<<<<< HEAD
+=======
+  "license": "Apache-2.0",
+>>>>>>> 977ab60 (Full Updated Version)
   "private": true,
   "scripts": {
     "dev": "next dev",

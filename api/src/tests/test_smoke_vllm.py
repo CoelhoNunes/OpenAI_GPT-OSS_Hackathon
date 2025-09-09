@@ -12,7 +12,7 @@ async def _chat_once() -> str:
         r = await client.post(
             f"{base}/v1/chat/completions",
             json={
-                "model": os.getenv("GPT_OSS_MODEL", "openai/gpt-oss-20b"),
+                "model": os.getenv("MODEL_ID", "openai/gpt-oss-20b"),
                 "messages": [{"role": "user", "content": "Say hi"}],
                 "max_tokens": 8,
             },

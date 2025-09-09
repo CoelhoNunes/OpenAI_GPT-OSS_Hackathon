@@ -1,6 +1,8 @@
-# LeetCoach - GPT-OSS Powered Coding Practice
+# LeetCoach
 
-A professional, containerized LeetCode-style practice app that teaches data structures and algorithms with **GPT-OSS exclusively** as the coaching AI and **CUDA acceleration** for large-scale problem generation.
+This project runs exclusively on gpt-oss with CUDA, fully local inference.
+
+A professional, containerized LeetCode-style practice app that teaches data structures and algorithms with **gpt-oss** as the coaching AI and **CUDA acceleration** for large-scale problem generation.
 
 ## 🚀 Features
 
@@ -12,8 +14,8 @@ A professional, containerized LeetCode-style practice app that teaches data stru
 - **Comprehensive Testing**: Automated test case execution with detailed results
 
 ### GPT-OSS Integration
-- **Exclusive GPT-OSS Models**: Uses only `gpt-oss-20b` or `gpt-oss-120b` weights
-- **Local-First Architecture**: vLLM (GPT-OSS only)
+- **Exclusive GPT-OSS Models**: Uses only `gpt-oss-20b` weights
+- **Local-First Architecture**: Local vLLM server (gpt-oss only); no outbound calls
 - **Strict Guardrails**: Server-enforced coaching that never reveals full solutions
 - **Context-Aware Coaching**: Problem-specific hints, strategy guidance, and complexity analysis
 
@@ -52,12 +54,12 @@ A professional, containerized LeetCode-style practice app that teaches data stru
 - **CUDA Accel**: GPU-accelerated input generation and expected output computation
 - **Database**: PostgreSQL for problems, submissions, and chat history
 
-## 🚀 Quick Start
+## 🚀 Getting Started (Local GPU)
 
 ### Prerequisites
-- Docker and Docker Compose
-- NVIDIA Container Toolkit (for GPU support)
-- 8GB+ RAM recommended
+- NVIDIA GPU + Driver + CUDA runtime
+- Docker and Docker Compose (with NVIDIA Container Toolkit), or Python 3.10+
+- 16GB+ RAM recommended
 
 ### 1. Clone and Setup
 ```bash
@@ -71,16 +73,14 @@ cp env.example .env
 nano .env
 ```
 
-### 2. Start Services
+### 2. Start (Local, GPU)
 ```bash
-# Standard startup
-make up
-
-# With GPU support
-make up-gpu
-
-# Or manually
+# Compose (GPU):
+cp env.example .env
 docker compose up --build
+
+# Or via script:
+bash scripts/run_local_gpu.sh
 ```
 
 ### 3. Access the Application
@@ -93,35 +93,34 @@ docker compose up --build
 ### Environment Variables
 ```bash
 # Model Configuration (GPT-OSS only)
-GPT_OSS_MODEL=openai/gpt-oss-20b             # pinned to gpt-oss-20b
-ALLOW_NON_GPT_OSS=false                      # Strict GPT-OSS enforcement
+MODEL_ID=openai/gpt-oss-20b
+HF_ID=openai/gpt-oss-20b
+WEIGHTS_PATH=
+TORCH_DTYPE=bfloat16
+MAX_TOKENS=512
+CONTEXT_LEN=8192
+GPU_MEMORY_FRACTION=0.9
+BATCH_SIZE=1
 
-# vLLM Configuration
+# vLLM Configuration (local only)
 VLLM_BASE_URL=http://localhost:8000
 
-# Hugging Face Token (optional if model is gated)
-HF_TOKEN=
+# Security
+ALLOW_NON_GPT_OSS=false
 
 # CUDA Configuration
 CUDA_VISIBLE_DEVICES=0
 ```
 
 ### Model Setup
-
-#### vLLM Server (Used by Compose)
-```bash
-# The compose file starts vLLM automatically and exposes port 8003 -> 8000
-# Health endpoint used: http://localhost:8003/v1/models
-```
+- Weights: pulled automatically into a local cache (no outbound inference APIs)
+- Health endpoint: `http://localhost:8003/v1/models`
 
 ## 🎯 Usage Guide
 
-### 3-Minute Demo Script
+### 3-Minute Demo Video Note
 
-1. **Start the Application**
-   ```bash
-   make up
-   ```
+Keep <3 minutes. Show the app running locally on the GPU.
 
 2. **Select a Problem**
    - Go to Problems tab
@@ -252,7 +251,7 @@ make clean
    }
    ```
 
-## 🧪 Testing
+## 🧪 Testing Instructions
 
 ### Test Coverage
 - **Problem Generation**: Deterministic seeded generation
@@ -260,20 +259,14 @@ make clean
 - **GPT-OSS Integration**: Guardrail enforcement
 - **CUDA Acceleration**: GPU/CPU fallback verification
 
-### Running Tests
+### Local smoke test for gpt-oss
 ```bash
-# API tests
-cd api && python -m pytest tests/ -v
-
-# CUDA tests  
-cd cuda_accel && python -m pytest tests/ -v
-
-# Web tests
-cd web && npm test
-
-# All tests
-make test
+curl -s http://localhost:8003/v1/chat/completions -X POST \
+  -H 'Content-Type: application/json' \
+  -d '{"model":"openai/gpt-oss-20b","messages":[{"role":"user","content":"Say hi"}],"max_tokens":8}'
 ```
+
+Expected minimal output includes a JSON with a non-empty `choices[0].message.content` string.
 
 ## 🚀 Deployment
 
@@ -333,7 +326,7 @@ VLLM_BASE_URL=http://vllm-server:8000
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
