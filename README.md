@@ -62,16 +62,6 @@ Train smarter, code faster, and let **GPT-OSS + CUDA** take your interview prep 
 
 ---
 
-## 🖼️ Visuals & Badges  
-
-![Build](https://img.shields.io/badge/build-passing-brightgreen)  
-![CUDA](https://img.shields.io/badge/CUDA-Accelerated-blue)  
-![Model](https://img.shields.io/badge/GPT--OSS-20b-orange)  
-![License](https://img.shields.io/badge/license-Apache%202.0-green)  
-![Made With](https://img.shields.io/badge/Made%20With-%E2%9D%A4%20and%20GPT--OSS-red)  
-
----
-
 ### 5-Service Docker Compose Setup
 ```
 ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
@@ -139,3 +129,13 @@ leetcoach/
 - **FastAPI**: For the excellent Python web framework
 - **Next.js**: For the React framework
 - **Monaco Editor**: For the code editing experience
+---
+
+## 🖼️ Visuals & Badges  
+
+![Build](https://img.shields.io/badge/build-passing-brightgreen)  
+![CUDA](https://img.shields.io/badge/CUDA-Accelerated-blue)  
+![Model](https://img.shields.io/badge/GPT--OSS-20b-orange)  
+![License](https://img.shields.io/badge/license-Apache%202.0-green)  
+![Made With](https://img.shields.io/badge/Made%20With-%E2%9D%A4%20and%20GPT--OSS-red)  
+
