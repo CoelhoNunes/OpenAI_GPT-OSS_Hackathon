@@ -1,35 +1,101 @@
-# LeetCoach
+# 🎉 LeetCoach — Your AI Coding Mentor 🚀  
 
-This project runs exclusively on gpt-oss with CUDA, fully local inference.
+LeetCoach is not just another coding practice app — it’s your **personal AI-powered mentor** for mastering data structures and algorithms.  
+Built **exclusively on GPT-OSS** with **CUDA acceleration**, it delivers a **fully local, high-performance coaching experience** — no internet calls, no distractions, just pure coding growth.  
 
-A professional, containerized LeetCode-style practice app that teaches data structures and algorithms with **gpt-oss** as the coaching AI and **CUDA acceleration** for large-scale problem generation.
+---
 
-## 🚀 Features
+## ✨ Why LeetCoach?  
+- 💡 **Interactive Coaching**: GPT-OSS guides you with tailored hints, strategy tips, and complexity analysis.  
+- 🧩 **LeetCode-Style Problems**: Fresh, randomized challenges every session — no boring repeats.  
+- ⚡ **GPU-Powered Speed**: CUDA acceleration generates and validates problems at scale.  
+- 🔒 **Local & Private**: 100% local inference with gpt-oss, keeping your work safe and offline.  
 
-### Core Functionality
-- **5 Data Structure Categories**: Arrays & Strings, Linked List, Stack & Queue, Hash Map/Set, Binary Tree/BST
-- **Randomized Problems**: Seeded problem generation ensures unique instances every time
-- **Dual Language Support**: Python and C++ with syntax highlighting and auto-completion
-- **Real-time Execution**: Sandboxed code runner with time/memory limits
-- **Comprehensive Testing**: Automated test case execution with detailed results
+LeetCoach is designed to feel like **pair-programming with a senior engineer**, but one who never sleeps, never judges, and always pushes you to think deeper.  
 
-### GPT-OSS Integration
-- **Exclusive GPT-OSS Models**: Uses only `gpt-oss-20b` weights
-- **Local-First Architecture**: Local vLLM server (gpt-oss only); no outbound calls
-- **Strict Guardrails**: Server-enforced coaching that never reveals full solutions
-- **Context-Aware Coaching**: Problem-specific hints, strategy guidance, and complexity analysis
+---
 
-### CUDA Acceleration
-- **GPU-Accelerated Generation**: Large-N input generation for array/string problems
-- **Expected Output Computation**: Parallel computation of reference solutions
-- **Automatic Fallback**: Seamless CPU fallback when GPU unavailable
-- **NVIDIA Container Toolkit**: Full GPU support with `--gpus all`
+## 🚀 Features  
 
-### Professional UI/UX
-- **Monaco Editor**: VS Code-like editing experience with IntelliSense
-- **Persistent Coach Panel**: Left-side GPT-OSS coaching with real-time chat
-- **Tabbed Interface**: Problems, Editor, Results, and Solutions tabs
-- **Responsive Design**: Clean Tailwind CSS with shadcn/ui components
+### 📚 Core Functionality  
+- **5 Essential Data Structures**:  
+  - Arrays & Strings  
+  - Linked List  
+  - Stack & Queue  
+  - Hash Map / Set  
+  - Binary Tree / BST  
+- **Randomized Problem Generation**: Every session feels brand new.  
+- **Dual Language Support**: Solve in **Python** or **C++**, complete with syntax highlighting & auto-completion.  
+- **Real-time Execution**: Safe, sandboxed code runner with runtime/memory limits.  
+- **Comprehensive Testing**: Built-in test cases with detailed results & feedback.  
+
+### 🤖 GPT-OSS Coaching  
+- **Exclusive GPT-OSS Models**: Powered by gpt-oss-20b weights.  
+- **Local-First Design**: Runs on a local vLLM server — no external calls.  
+- **Strict Guardrails**: AI coach helps with strategy, never spoils full solutions.  
+- **Context-Aware Guidance**: Personalized hints for the exact problem you’re solving.  
+
+### ⚡ CUDA Acceleration  
+- **GPU-Boosted Workflows**: Parallelized generation of large input sets.  
+- **Faster Testing**: GPU-backed computation of expected outputs.  
+- **Smart Fallback**: Automatic CPU fallback when CUDA isn’t available.  
+- **NVIDIA Container Toolkit Support**: Run with `--gpus all` for full acceleration.  
+
+### 🎨 Professional UI/UX  
+- **Monaco Editor**: The same coding feel as VS Code.  
+- **Persistent Coach Panel**: Get live AI chat & insights while coding.  
+- **Tabbed Navigation**: Switch between Problems, Editor, Results, and Coaching easily.  
+- **Responsive & Polished**: Built with Tailwind CSS + shadcn/ui for a clean, modern look.  
+
+---
+
+## 🏆 Perfect for the Hackathon  
+LeetCoach was built for the **OpenAI Open Model Hackathon** to show off what’s possible with:  
+- 🔹 **Open-weight gpt-oss models**  
+- 🔹 **GPU acceleration**  
+- 🔹 **Professional, production-ready engineering**  
+
+This project is **a complete learning platform**, not just a demo. Judges and developers can test it locally with **one command** and immediately see the coaching magic in action.  
+
+---
+
+## 📦 Quick Start  
+
+```bash
+# Clone the repo
+git clone https://github.com/CoelhoNunes/OpenAI_GPT-OSS_Hackathon.git
+cd OpenAI_GPT-OSS_Hackathon
+
+# Build the container with GPU support
+docker build -t leetcoach .
+docker run --gpus all -p 8080:8080 leetcoach
+
+# Open your browser at http://localhost:8080 🚀
+```
+
+---
+
+## 📜 License  
+This project is licensed under the **Apache License 2.0** — open, free, and built to share knowledge.  
+
+---
+
+🔥 **LeetCoach is here to make practicing algorithms fun, fast, and fearless.**  
+Train smarter, code faster, and let **GPT-OSS + CUDA** take your interview prep to the next level.  
+
+---
+
+## 🖼️ Visuals & Badges  
+
+![LeetCoach Banner](https://via.placeholder.com/1000x250.png?text=LeetCoach+-+GPT-OSS+Powered+Coding+Mentor)  
+
+![Build](https://img.shields.io/badge/build-passing-brightgreen)  
+![CUDA](https://img.shields.io/badge/CUDA-Accelerated-blue)  
+![Model](https://img.shields.io/badge/GPT--OSS-20b-orange)  
+![License](https://img.shields.io/badge/license-Apache%202.0-green)  
+![Made With](https://img.shields.io/badge/Made%20With-%E2%9D%A4%20and%20GPT--OSS-red)  
+
+---
 
 ## 🏗️ Architecture
 
@@ -343,5 +409,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - **Documentation**: [Wiki](https://github.com/your-repo/wiki)
 
 ---
+
 
 **Built with ❤️ using GPT-OSS exclusively for AI coaching and CUDA for acceleration**
