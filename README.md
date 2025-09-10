@@ -1,6 +1,6 @@
 # LeetCoach — Your AI Coding Mentor
 
-![Video Demo](assets/DEMO.gif)
+https://github.com/user-attachments/assets/6daccc9b-0f40-4928-90d1-fdd73871636d
 
 LeetCoach is not just another coding practice app — it’s your **personal AI-powered mentor** for mastering data structures and algorithms.  
 Built **exclusively on GPT-OSS** with **CUDA acceleration**, it delivers a **fully local, high-performance coaching experience** — no internet calls, no distractions, just pure coding growth.  
@@ -140,6 +140,7 @@ leetcoach/
 ![Model](https://img.shields.io/badge/GPT--OSS-20b-orange)  
 ![License](https://img.shields.io/badge/license-Apache%202.0-green)  
 ![Made With](https://img.shields.io/badge/Made%20With-%E2%9D%A4%20and%20GPT--OSS-red)  
+
 
 
 
