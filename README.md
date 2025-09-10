@@ -135,8 +135,8 @@ leetcoach/
 
 ![CUDA](https://img.shields.io/badge/CUDA-Accelerated-blue)  
 ![Model](https://img.shields.io/badge/GPT--OSS-20b-orange)  
-![License](https://img.shields.io/badge/license-Apache%202.0-green)  
-![Made With](https://img.shields.io/badge/Made%20With-%E2%9D%A4%20and%20GPT--OSS-red)  
+![License](https://img.shields.io/badge/license-Apache%202.0-green)
+
 
 
 
